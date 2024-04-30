@@ -1,0 +1,47 @@
+@use "../../styles/var.scss" as *;
+@use "../../styles/mixin.scss" as mix;
+
+.headerSect {
+  background-color: $bg1;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 0;
+}
+
+.headerContainer {
+  @include mix.ContainerXS;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerTitle {
+  color: $textc-100;
+  h1 {
+    @include mix.HeadingXL;
+  }
+  span{
+    margin-left: 8px;
+    @include mix.HeadingM;
+  }
+}
+
+.cartButton{
+  background-color: $bg0;
+  color: $textc-1000;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 90px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15.99px;  
+
+  @include mix.ButtonM;
+}

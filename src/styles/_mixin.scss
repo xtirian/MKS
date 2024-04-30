@@ -1,12 +1,50 @@
+@use "./var" as *;
 
-
+// TYPOGRAPHY
+@mixin HeadingXL {
+  font-size: 4rem;
+  font-weight: 700;
+}
 @mixin HeadingL {
   font-size: 2.7rem;
   font-weight: 700;
   line-height: 3.291rem;
 }
+@mixin HeadingM {
+  font-size: 2rem;
+  font-weight: 300;
+}
 
+// BUTTON
 @mixin Button {
-  font-size: 28px;
-            line-height: 15px;
+  font-size: 2.8rem;
+  line-height: 15px;
+}
+@mixin ButtonM {
+  font-size: 2rem;
+  line-height: 15px;
+  font-weight: 700;
+}
+
+// CONTAINER
+@mixin ContainerXS {
+  width: $container-xs;
+  margin: 0 auto;
+}
+@mixin ContainerSM {
+  width: $container-sm;
+  margin: 0 auto;
+}
+@mixin ContainerMD {
+  width: $container-md;
+  margin: 0 auto;
+}
+@mixin ContainerLG {
+  width: $container-lg;
+  margin: 0 auto;
+}
+@mixin ContainerXL {
+  width: $container-xl;
+  max-width: 1280px;
+  margin: 0 auto;
 }

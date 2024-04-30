@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 export const sidebarReducer = (
-  state = { isOpen: true },
+  state = { isOpen: false },
   action: { type: any }
 ) => {
   switch (action.type) {
@@ -13,7 +13,7 @@ export const sidebarReducer = (
 };
 
 export const SidebarContext = createContext({
-  isOpen: true,
+  isOpen: false,
   toggleSidebar: () => {},
 });
 
