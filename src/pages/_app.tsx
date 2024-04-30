@@ -10,7 +10,7 @@ import { AppProvider } from "@/services/reduxProvider";
 import "@/styles/global.scss";
 import { SideBar } from "@/components/sideBar/SideBar.component";
 import { Header } from "@/components/header/Header.component";
-import Footer from "@/components/footer/Footer";
+import Footer from "@/components/footer/Footer.component";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
