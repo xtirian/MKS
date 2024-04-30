@@ -4,6 +4,8 @@ import styles from "./SideBar.module.scss";
 import { IoMdClose } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/services/reduxProvider";
+import ProductCartCard from "../productCartCard/ProductCartCard.component";
+import { CartProductModel } from "@/models/inCartProduct";
 
 export const SideBar = () => {
   const dispatch = useDispatch();
@@ -11,6 +13,8 @@ export const SideBar = () => {
     dispatch({ type: "TOGGLE_SIDEBAR" });
   };
   const isOpen = useSelector((state: RootState) => state.sidebar.isOpen);
+
+  const data: CartProductModel[] = [];
 
   return (
     <motion.div
@@ -32,6 +36,21 @@ export const SideBar = () => {
             <IoMdClose />
           </button>
         </header>
+        <div className={styles.productCartGrid}>
+          {data.length
+            ? data.map((product) => (
+                <ProductCartCard
+                  id={product.id}
+                  name={product.name}
+                  brand={product.brand}
+                  photo={product.photo}
+                  price={product.price}
+                  quantity={product.quantity}
+                />
+              ))
+            : <h2>Nenhum produto no carrinho</h2>}
+          
+        </div>
         <footer>
           <p>Total:</p>
           <p>R$ 0,00</p> {/* This value should be calculated */}

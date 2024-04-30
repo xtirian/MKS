@@ -24,11 +24,21 @@
   line-height: 1.5rem;
   font-weight: 700;
 }
+@mixin PriceCart {
+  font-size: 1.3rem;
+  line-height: 1.4rem;
+  font-weight: 700;
+}
 
 @mixin TextM {
   font-size: 1.4rem;
   line-height: 1.8rem;
   font-weight: 600;
+}
+@mixin TextSM {
+  font-size: 1.3rem;
+  line-height: 1.7rem;
+  font-weight: 400;
 }
 
 @mixin TextS {

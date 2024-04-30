@@ -1,11 +1,16 @@
 @use "@/styles/var.scss" as *;
 @use "@/styles/mixin.scss" as mix;
 
+%sideBarContainer {
+  width: 100%;
+    max-width: 80.6584362%;
+}
+
 .sideBarWraper {
   width: 100%;
   max-width: 486px;
 
-  height: 100%;
+  height: 100vh;
   background-color: $bg1;
 
   display: flex;
@@ -13,7 +18,7 @@
   justify-content: space-between;
   align-items: center;
 
-  box-shadow: -5 0 6px rgba(0, 0, 0, 0.13);
+  box-shadow: -5px 0 6px rgba(0, 0, 0, 0.13);
   position: fixed;
   top: 0;
   right: 0;
@@ -22,14 +27,15 @@
 
 .sideBarContainer {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 36px auto;
+  row-gap: 64px;
 
   header {
-    width: 100%;
-    max-width: 80.6584362%;
+    @extend %sideBarContainer;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -54,9 +60,19 @@
 .submitButton {
   width: 100%;
   height: 97px;
-  margin-top: 42px;
+  margin-top: 6px;
   background-color: $bg4;
 
   color: $textc-100;
   @include mix.Button;
 }
+
+.productCartGrid{
+  @extend %sideBarContainer;
+  height: 100%;  
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 28px;
+}
+
