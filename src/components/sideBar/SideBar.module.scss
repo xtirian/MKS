@@ -1,0 +1,62 @@
+@use "@/styles/var.scss" as *;
+@use "@/styles/mixin.scss" as mix;
+
+.sideBarWraper {
+  width: 100%;
+  max-width: 486px;
+
+  height: 100%;
+  background-color: $bg1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: -5 0 6px rgba(0, 0, 0, 0.13);
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.sideBarContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 36px auto;
+
+  header {
+    width: 100%;
+    max-width: 80.6584362%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    h2 {
+      @include mix.HeadingL;
+      color: $textc-100;
+      width: fit-content;
+    }
+
+    button {
+      min-width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background-color: $bg4;
+      color: $textc-100;
+      @include mix.Button;
+    }
+  }
+}
+
+.submitButton {
+  width: 100%;
+  height: 97px;
+  margin-top: 42px;
+  background-color: $bg4;
+
+  color: $textc-100;
+  @include mix.Button;
+}
