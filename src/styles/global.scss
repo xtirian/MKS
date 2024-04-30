@@ -3,18 +3,21 @@
   margin: 0;
   padding: 0;
   }
-  body {
-  font-family: "Montserrat", sans-serif !important;
-  }
   
   html {
-  scroll-behavior: smooth;
-  font-size: 62.5%;
+    scroll-behavior: smooth;
+    font-size: 62.5%;
+    height: 100vh;
   }
-
+  
+  body {
+  font-family: "Montserrat", sans-serif !important;
+  height: 100%;
+  }
   body, html {
     overflow-x: hidden;
   }
+  
 
   button {
     cursor: pointer;
@@ -22,4 +25,8 @@
     outline: none;
     background-color: transparent;
     color: inherit;
+  }
+
+  #__next{
+    height: 100%;
   }

@@ -1,0 +1,19 @@
+@use '../../styles/var.scss' as *;
+@use '../../styles/mixin.scss' as mix;
+
+.footerSect{
+  width: 100%;
+  background-color: $bg3;
+  padding: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.footerContainer{
+  @include mix.ContainerXS;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

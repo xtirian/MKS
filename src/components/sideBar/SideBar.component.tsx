@@ -3,7 +3,6 @@ import React from "react";
 import styles from "./SideBar.module.scss";
 import { IoMdClose } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import { SidebarContextProps } from "@/services/context/sidebar.context";
 import { RootState } from "@/services/reduxProvider";
 
 export const SideBar = () => {
