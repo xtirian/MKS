@@ -1,20 +1,34 @@
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from "./SideBar.module.scss";
 import { IoMdClose } from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@/services/reduxProvider";
 import ProductCartCard from "../productCartCard/ProductCartCard.component";
-import { CartProductModel } from "@/models/inCartProduct";
+import { useSidebarContext } from "@/services/useSidebarContext";
+import { useCartContext } from "@/services/useCartContext";
+import { ProductModel } from "@/models/product";
 
 export const SideBar = () => {
-  const dispatch = useDispatch();
-  const toggleSidebar = () => {
-    dispatch({ type: "TOGGLE_SIDEBAR" });
-  };
+  const { toggleSidebar } = useSidebarContext();
   const isOpen = useSelector((state: RootState) => state.sidebar.isOpen);
+  const { products } = useSelector((state: RootState) => state.cart);
 
-  const data: CartProductModel[] = [];
+  const total = useMemo(() => {
+    return products.reduce((accumulator, product) => {
+      return accumulator + product.price * product.quantity;
+    }, 0);
+  }, [products]);
+
+
+  const { removeItemCart } = useCartContext();
+  const handleRemoveFromCart = (product: ProductModel) => {
+    removeItemCart(product);
+  };
+
+  useEffect(() => {
+    console.log(products);
+  }, [products]);
 
   return (
     <motion.div
@@ -37,8 +51,9 @@ export const SideBar = () => {
           </button>
         </header>
         <div className={styles.productCartGrid}>
-          {data.length
-            ? data.map((product) => (
+          {products.length ? (
+            products.map((product) => (
+              <div key={product.id} className={styles.productCartCardWrapper}>
                 <ProductCartCard
                   id={product.id}
                   name={product.name}
@@ -47,13 +62,22 @@ export const SideBar = () => {
                   price={product.price}
                   quantity={product.quantity}
                 />
-              ))
-            : <h2>Nenhum produto no carrinho</h2>}
-          
+                <button
+                  type="button"
+                  onClick={() => handleRemoveFromCart(product as unknown as ProductModel)}
+                  className={styles.removeButton}
+                >
+                  <IoMdClose />
+                </button>
+              </div>
+            ))
+          ) : (
+            <h2>Nenhum produto no carrinho</h2>
+          )}
         </div>
         <footer>
           <p>Total:</p>
-          <p>R$ 0,00</p> {/* This value should be calculated */}
+          <p>R$ {total.toFixed(0)}</p> 
         </footer>
       </div>
       <button className={styles.submitButton}>Finalizar Compra</button>
