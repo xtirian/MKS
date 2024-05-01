@@ -3,7 +3,7 @@ import styles from "./Header.module.scss";
 import { BsCart4 } from "react-icons/bs";
 import { motion, useAnimation } from "framer-motion";
 import { useSelector } from "react-redux";
-import { useSidebarContext } from "@/services/useSidebarContext";
+import { useSidebarContext } from "@/services/useCases/useSidebarContext";
 import { RootState } from "@/services/reduxProvider";
 
 export const Header = () => {
