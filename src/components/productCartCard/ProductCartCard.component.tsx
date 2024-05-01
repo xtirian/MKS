@@ -5,7 +5,7 @@ import { IoMdClose } from "react-icons/io";
 import React from "react";
 import Image from "next/image";
 import QuantityDisplay from "../quantityComponent/QuantityDisplay.component";
-import { useCartContext } from "@/services/useCartContext";
+import { useCartContext } from "@/services/useCases/useCartContext";
 import { CartProductModel } from "@/models/inCartProduct";
 
 const ProductCartCard = (product: CartProductModel) => {

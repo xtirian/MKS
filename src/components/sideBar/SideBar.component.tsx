@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import styles from "./SideBar.module.scss";
 import { IoMdClose } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { RootState } from "@/services/reduxProvider";
 import ProductCartCard from "../productCartCard/ProductCartCard.component";
-import { useSidebarContext } from "@/services/useSidebarContext";
-import { useCartContext } from "@/services/useCartContext";
+import { useSidebarContext } from "@/services/useCases/useSidebarContext";
+import { useCartContext } from "@/services/useCases/useCartContext";
 import { ProductModel } from "@/models/product";
 
 export const SideBar = () => {
@@ -20,15 +20,10 @@ export const SideBar = () => {
     }, 0);
   }, [products]);
 
-
   const { removeItemCart } = useCartContext();
   const handleRemoveFromCart = (product: ProductModel) => {
     removeItemCart(product);
   };
-
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
 
   return (
     <motion.div
@@ -64,7 +59,9 @@ export const SideBar = () => {
                 />
                 <button
                   type="button"
-                  onClick={() => handleRemoveFromCart(product as unknown as ProductModel)}
+                  onClick={() =>
+                    handleRemoveFromCart(product as unknown as ProductModel)
+                  }
                   className={styles.removeButton}
                 >
                   <IoMdClose />
@@ -77,7 +74,7 @@ export const SideBar = () => {
         </div>
         <footer>
           <p>Total:</p>
-          <p>R$ {total.toFixed(0)}</p> 
+          <p>R$ {total.toFixed(0)}</p>
         </footer>
       </div>
       <button className={styles.submitButton}>Finalizar Compra</button>
