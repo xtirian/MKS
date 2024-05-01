@@ -3,7 +3,7 @@
 
 %sideBarContainer {
   width: 100%;
-    max-width: 80.6584362%;
+  max-width: 80.6584362%;
 }
 
 .sideBarWraper {
@@ -23,6 +23,19 @@
   top: 0;
   right: 0;
   z-index: 100;
+
+  footer {
+    @extend %sideBarContainer;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 2.8rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+    color: $textc-100;
+  }
 }
 
 .sideBarContainer {
@@ -44,6 +57,7 @@
       @include mix.HeadingL;
       color: $textc-100;
       width: fit-content;
+      user-select: none;
     }
 
     button {
@@ -67,12 +81,31 @@
   @include mix.Button;
 }
 
-.productCartGrid{
+.productCartGrid {
   @extend %sideBarContainer;
-  height: 100%;  
-  overflow-y: auto;
+  height: 100%;
   display: flex;
   flex-direction: column;
   row-gap: 28px;
+  position: relative;
 }
 
+.removeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+
+  border-radius: 50%;
+  background-color: $bg4;
+  color: $textc-100;
+
+  visibility: visible;
+  transform: translate(50%, -50%);
+  cursor: pointer;
+  @include mix.Button;
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}

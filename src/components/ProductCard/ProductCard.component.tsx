@@ -1,12 +1,23 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import styles from "./productCard.module.scss";
 import { ProductModel } from "@/models/product";
 import { FiShoppingBag } from "react-icons/fi";
 
 import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { CartContext } from "@/services/context/cart.context";
+import { useCartContext } from "@/services/useCartContext";
+import { useSidebarContext } from "@/services/useSidebarContext";
 
 const ProductCard = (product: ProductModel) => {
   const { id, name, brand, description, price, photo } = product;
+  const { addItemCart } = useCartContext();
+  const { toggleSidebar } = useSidebarContext();
+
+  const handleAddToCart = () => {
+    addItemCart(product, 1);
+    toggleSidebar(true);
+  };
 
   return (
     <div className={styles.cardWrap} key={id}>
@@ -28,7 +39,7 @@ const ProductCard = (product: ProductModel) => {
         </div>
         <p className={styles.cardDescription}>{description}</p>
       </div>
-      <button className={styles.addCartButton}>
+      <button className={styles.addCartButton} onClick={handleAddToCart}>
         <FiShoppingBag /> <p>Comprar</p>
       </button>
     </div>
