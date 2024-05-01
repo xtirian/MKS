@@ -1,4 +1,4 @@
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import { combineReducers, createStore } from "redux";
 import { SidebarContext, sidebarReducer } from "./context/sidebar.context";
 import { ReactNode } from "react";
@@ -13,17 +13,16 @@ const rootReducer = combineReducers({
 const store = createStore(rootReducer);
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
-  const products = useSelector((state: RootState) => state.cart.products);
-
   return (
     <Provider store={store}>
       <CartContext.Provider
         value={{
-          products,
+          products: (store.getState() as { cart: { products: any } }).cart
+            ?.products,
           addItemCart: (product: ProductModel, quantity: number) =>
             store.dispatch({
               type: "ADD_ITEM_CART",
-              product,
+              product: { ...product, quantity },
               payload: { quantity },
             }),
           removeItemCart: (product: ProductModel) =>
@@ -38,8 +37,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       >
         <SidebarContext.Provider
           value={{
-            isOpen: useSelector((state: RootState) => state.sidebar.isOpen),
-            toggleSidebar: () => store.dispatch({ type: "TOGGLE_SIDEBAR" }),
+            isOpen: (store.getState() as { sidebar: { isOpen: boolean } })
+              .sidebar?.isOpen,
+            toggleSidebar: (isOpen?:boolean) => store.dispatch({ type: "TOGGLE_SIDEBAR", isOpen }),
           }}
         >
           {children}

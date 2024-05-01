@@ -44,7 +44,7 @@ export const cartReducer = (
       return {
         ...state,
         products: state.products.map((product: CartProductModel) => {
-          if (product.id === action.product.id) {
+          if (product.id === action.product.id && action.payload.quantity > 0) {            
             return { ...product, quantity: action.payload.quantity };
           } else {
             return product;
