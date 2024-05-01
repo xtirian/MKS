@@ -4,10 +4,8 @@ import { ProductModel } from "@/models/product";
 import { FiShoppingBag } from "react-icons/fi";
 
 import Image from "next/image";
-import { useDispatch } from "react-redux";
-import { CartContext } from "@/services/context/cart.context";
-import { useCartContext } from "@/services/useCartContext";
-import { useSidebarContext } from "@/services/useSidebarContext";
+import { useCartContext } from "@/services/useCases/useCartContext";
+import { useSidebarContext } from "@/services/useCases/useSidebarContext";
 
 const ProductCard = (product: ProductModel) => {
   const { id, name, brand, description, price, photo } = product;
@@ -34,7 +32,7 @@ const ProductCard = (product: ProductModel) => {
             {brand} {name}
           </h3>
           <div className={styles.cardProductPrice}>
-            <p>R${price.toFixed(0)} </p>
+            <p>R${Number(price).toFixed(0)} </p>
           </div>
         </div>
         <p className={styles.cardDescription}>{description}</p>

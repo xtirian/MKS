@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import styles from "./SideBar.module.scss";
 import { IoMdClose } from "react-icons/io";
 import { useSelector } from "react-redux";
