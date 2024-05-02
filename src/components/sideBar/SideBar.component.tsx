@@ -21,9 +21,7 @@ export const SideBar = () => {
   }, [products]);
 
   const { removeItemCart } = useCartContext();
-  const handleRemoveFromCart = (product: ProductModel) => {
-    removeItemCart(product);
-  };
+  
 
   return (
     <motion.div
@@ -56,27 +54,19 @@ export const SideBar = () => {
                   photo={product.photo}
                   price={product.price}
                   quantity={product.quantity}
-                />
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleRemoveFromCart(product as unknown as ProductModel)
-                  }
-                  className={styles.removeButton}
-                >
-                  <IoMdClose />
-                </button>
+                />                
               </div>
             ))
           ) : (
             <h2>Nenhum produto no carrinho</h2>
           )}
         </div>
-        <footer>
+        
+      </div>
+      <footer>
           <p>Total:</p>
           <p>R$ {total.toFixed(0)}</p>
         </footer>
-      </div>
       <button className={styles.submitButton}>Finalizar Compra</button>
     </motion.div>
   );

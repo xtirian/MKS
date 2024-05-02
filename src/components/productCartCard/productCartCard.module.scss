@@ -21,3 +21,22 @@
   }
 }
 
+.removeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 9998;
+
+  border-radius: 50%;
+  background-color: $bg4;
+  color: $textc-100;
+
+  visibility: visible;
+  transform: translate(50%, -50%);
+  cursor: pointer;
+  @include mix.Button;
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
