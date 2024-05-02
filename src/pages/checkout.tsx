@@ -1,9 +1,19 @@
 import { Header } from "@/components/header/Header.component";
 import { useCartContext } from "@/services/useCases/useCartContext";
 import type { NextPage } from "next";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const CheckoutPage: NextPage = () => {
   const { products } = useCartContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    if(products.length === 0) {
+      router.push('/');
+    }
+  }, []);
+
   return (
     <>
       <Header hasCart={false} />

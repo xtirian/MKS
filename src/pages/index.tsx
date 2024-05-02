@@ -1,6 +1,7 @@
 import Grid42 from "@/components/grid4x2/Grid42.component";
 import { Header } from "@/components/header/Header.component";
 import ProductCard from "@/components/ProductCard/ProductCard.component";
+import ProductCardSkeleton from "@/components/ProductCard/ProductCardSkeleton.component";
 import useGetProducts from "@/services/api/useGetProducts";
 import Head from "next/head";
 import { Fragment } from "react";
@@ -30,7 +31,10 @@ export default function Home() {
         }}
       >
         <Grid42>
-          {isLoading && <p>Loading...</p>}
+          {isLoading &&
+            Array.from({ length: 8 }, (_, i) => (
+              <ProductCardSkeleton key={i} />
+            ))}
           {error && <p>Ops... tivemos um problema</p>}
           {data &&
             data.map((product) => (
