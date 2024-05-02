@@ -5,12 +5,12 @@ import { ReactNode } from "react";
 import { CartContext, cartReducer } from "./context/cart.context";
 import { ProductModel } from "@/models/product";
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   sidebar: sidebarReducer,
   cart: cartReducer,
 });
 
-const store = createStore(rootReducer);
+export const store = createStore(rootReducer);
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   return (

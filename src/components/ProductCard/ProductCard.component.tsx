@@ -1,13 +1,13 @@
-import React, { Dispatch, useCallback } from "react";
+import React, { useCallback } from "react";
 import styles from "./productCard.module.scss";
 import { ProductModel } from "@/models/product";
 import { FiShoppingBag } from "react-icons/fi";
 
 import Image from "next/image";
-import { useCartContext } from "@/services/useCases/useCartContext";
-import { useSidebarContext } from "@/services/useCases/useSidebarContext";
+import { useCartContext } from "../../services/useCases/useCartContext";
+import { useSidebarContext } from "../../services/useCases/useSidebarContext";
 
-const ProductCard = <T extends ProductModel>(product: Readonly<T>) => {
+const ProductCard = (product: ProductModel) => {
   const { id, name, brand, description, price, photo } = product;
   const { addItemCart } = useCartContext();
   const { toggleSidebar } = useSidebarContext();
@@ -20,7 +20,7 @@ const ProductCard = <T extends ProductModel>(product: Readonly<T>) => {
   return (
     <div className={styles.cardWrap} key={id}>
       <div className={styles.cardContainer} key={id}>
-        <Image
+        <img
           src={photo}
           alt={`image${name + brand}`}
           width={111}

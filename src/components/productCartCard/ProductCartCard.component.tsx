@@ -1,10 +1,9 @@
-import { ProductModel } from "@/models/product";
-import { CartProductModel } from "@/models/inCartProduct";
+import { ProductModel } from "../../models/product";
+import { CartProductModel } from "../../models/inCartProduct";
 import styles from "./productCartCard.module.scss";
 import React, { useCallback } from "react";
-import Image from "next/image";
 import QuantityDisplay from "../quantityComponent/QuantityDisplay.component";
-import { useCartContext } from "@/services/useCases/useCartContext";
+import { useCartContext } from "../../services/useCases/useCartContext";
 import { IoMdClose } from "react-icons/io";
 
 const ProductCartCard = <T extends CartProductModel>(product: Readonly<T>) => {
@@ -29,7 +28,7 @@ const ProductCartCard = <T extends CartProductModel>(product: Readonly<T>) => {
 
   return (
     <div className={styles.productCartCardWrapper} key={id}>
-      <Image src={photo} alt={name} width={46} height={57} />
+      <img src={photo} alt={name} width={46} height={57} />
       <h4>
         {brand} {name}
       </h4>
@@ -43,6 +42,7 @@ const ProductCartCard = <T extends CartProductModel>(product: Readonly<T>) => {
         type="button"
         onClick={() => handleRemoveFromCart()}
         className={styles.removeButton}
+        data-testid="remove-button"
       >
         <IoMdClose />
       </button>

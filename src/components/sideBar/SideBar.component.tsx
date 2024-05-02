@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useMemo } from "react";
+import React from "react";
 import styles from "./SideBar.module.scss";
 import { IoMdClose } from "react-icons/io";
 import { useSelector } from "react-redux";
-import { RootState } from "@/services/reduxProvider";
+import { RootState } from "../../services/reduxProvider";
 import ProductCartCard from "../productCartCard/ProductCartCard.component";
-import { useSidebarContext } from "@/services/useCases/useSidebarContext";
+import { useSidebarContext } from "../../services/useCases/useSidebarContext";
 import { useRouter } from "next/router";
-import useGetTotalCart from "@/services/useCases/useGetTotalCart";
+import useGetTotalCart from "../../services/useCases/useGetTotalCart";
 
 export const SideBar = () => {
   const { toggleSidebar } = useSidebarContext();

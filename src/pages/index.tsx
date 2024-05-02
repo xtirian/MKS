@@ -4,6 +4,7 @@ import ProductCard from "@/components/ProductCard/ProductCard.component";
 import ProductCardSkeleton from "@/components/ProductCard/ProductCardSkeleton.component";
 import useGetProducts from "@/services/api/useGetProducts";
 import Head from "next/head";
+import React from "react";
 import { Fragment } from "react";
 
 export default function Home() {

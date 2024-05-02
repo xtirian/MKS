@@ -2,6 +2,7 @@ import { Header } from "@/components/header/Header.component";
 import { useCartContext } from "@/services/useCases/useCartContext";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
+import React from "react";
 import { useEffect } from "react";
 
 const CheckoutPage: NextPage = () => {
