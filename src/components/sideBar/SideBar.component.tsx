@@ -1,27 +1,27 @@
 import { motion } from "framer-motion";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import styles from "./SideBar.module.scss";
 import { IoMdClose } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { RootState } from "@/services/reduxProvider";
 import ProductCartCard from "../productCartCard/ProductCartCard.component";
 import { useSidebarContext } from "@/services/useCases/useSidebarContext";
-import { useCartContext } from "@/services/useCases/useCartContext";
-import { ProductModel } from "@/models/product";
+import { useRouter } from "next/router";
+import useGetTotalCart from "@/services/useCases/useGetTotalCart";
 
 export const SideBar = () => {
   const { toggleSidebar } = useSidebarContext();
   const isOpen = useSelector((state: RootState) => state.sidebar.isOpen);
   const { products } = useSelector((state: RootState) => state.cart);
 
-  const total = useMemo(() => {
-    return products.reduce((accumulator, product) => {
-      return accumulator + product.price * product.quantity;
-    }, 0);
-  }, [products]);
+  const total = useGetTotalCart();
 
-  const { removeItemCart } = useCartContext();
-  
+  const router = useRouter();
+  const goCheckout = () => {
+    if (products.length === 0) return alert("Adicione produtos ao carrinho");
+    router.push("/checkout");
+    toggleSidebar();
+  };
 
   return (
     <motion.div
@@ -54,20 +54,21 @@ export const SideBar = () => {
                   photo={product.photo}
                   price={product.price}
                   quantity={product.quantity}
-                />                
+                />
               </div>
             ))
           ) : (
             <h2>Nenhum produto no carrinho</h2>
           )}
         </div>
-        
       </div>
       <footer>
-          <p>Total:</p>
-          <p>R$ {total.toFixed(0)}</p>
-        </footer>
-      <button className={styles.submitButton}>Finalizar Compra</button>
+        <p>Total:</p>
+        <p>R$ {total.toFixed(0)}</p>
+      </footer>
+      <button className={styles.submitButton} onClick={goCheckout}>
+        Finalizar Compra
+      </button>
     </motion.div>
   );
 };

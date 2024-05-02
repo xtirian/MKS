@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useSidebarContext } from "@/services/useCases/useSidebarContext";
 import { RootState } from "@/services/reduxProvider";
 
-export const Header = () => {
+export const Header = ({ hasCart = true }: { hasCart: boolean }) => {
   const { toggleSidebar } = useSidebarContext();
   const { products } = useSelector((state: RootState) => state.cart);
   const controls = useAnimation();
@@ -41,21 +41,23 @@ export const Header = () => {
             <span>Sistemas</span>
           </h1>
         </div>
-        <motion.button
-          className={styles.cartButton}
-          onClick={startWaveAnimation}
-          initial={{ scale: 1 }}
-          animate={controls}
-          transition={{
-            type: "spring",
-            damping: 10,
-            stiffness: 50,
-            mass: 0.5,
-          }}
-        >
-          <BsCart4 />
-          <p>{quantity}</p>
-        </motion.button>
+        {hasCart && (
+          <motion.button
+            className={styles.cartButton}
+            onClick={startWaveAnimation}
+            initial={{ scale: 1 }}
+            animate={controls}
+            transition={{
+              type: "spring",
+              damping: 10,
+              stiffness: 50,
+              mass: 0.5,
+            }}
+          >
+            <BsCart4 />
+            <p>{quantity}</p>
+          </motion.button>
+        )}
       </div>
     </header>
   );

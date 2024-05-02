@@ -5,11 +5,9 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/services/queryClient";
 import { AppProvider } from "@/services/reduxProvider";
 
-//import Header from '../components/Header';
 
 import "@/styles/global.scss";
 import { SideBar } from "@/components/sideBar/SideBar.component";
-import { Header } from "@/components/header/Header.component";
 import Footer from "@/components/footer/Footer.component";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -19,7 +17,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>MKS Challenge - xTirian</title>
       </Head>
       <AppProvider>
-        <Header />
         <main>
           <SideBar />
           <Component {...pageProps} />
