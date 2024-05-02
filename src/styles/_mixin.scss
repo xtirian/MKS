@@ -47,7 +47,7 @@
   font-weight: 400;
 }
 @mixin TextXS {
-  font-size: 1.0rem;
+  font-size: 1rem;
   line-height: 1.2rem;
   font-weight: 400;
 }
@@ -84,4 +84,25 @@
   width: $container-xl;
   max-width: 1280px;
   margin: 0 auto;
+}
+
+@mixin SM {
+  @media (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+@mixin MD {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+@mixin LG {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+@mixin XL {
+  @media (min-width: $breakpoint-xl) {
+    @content;
+  }
 }

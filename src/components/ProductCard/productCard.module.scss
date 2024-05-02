@@ -2,8 +2,9 @@
 @use "../../styles/mixin.scss" as mix;
 
 .cardWrap {
-  width: 217.56px;
-  height: 285px;
+  max-width: 251px;
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -48,7 +49,7 @@
   color: $textc-700;
   margin-top: 8px;
 }
-.addCartButton {
+.addCartButton {  
   width: 100%;
   height: 31.91px;
   background-color: $bg1;
@@ -58,7 +59,11 @@
   align-items: center;
   gap: 14px;
 
+  margin-top: 16px;
+
   @include mix.TextM;
   text-transform: uppercase;
   color: $textc-100;
 }
+
+//max-width: 217px no desktop;

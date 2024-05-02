@@ -1,27 +1,26 @@
-import { ProductModel } from "@/models/product";
+import { ProductModel} from "@/models/product";
+import { CartProductModel } from "@/models/inCartProduct";
 import styles from "./productCartCard.module.scss";
-import { IoMdClose } from "react-icons/io";
-
-import React from "react";
+import React, { useCallback } from "react";
 import Image from "next/image";
 import QuantityDisplay from "../quantityComponent/QuantityDisplay.component";
 import { useCartContext } from "@/services/useCases/useCartContext";
-import { CartProductModel } from "@/models/inCartProduct";
 
-const ProductCartCard = (product: CartProductModel) => {
+const ProductCartCard = <T extends CartProductModel>(product: Readonly<T>) => {
   const { id, photo, name, brand, price, quantity } = product;
   const { addItemCart, editQuantity, removeItemCart } = useCartContext();
 
-  const handleAdd = () => {
+  const handleAdd = useCallback(() => {
     addItemCart(product as unknown as ProductModel, 1);
-  };
-  const handleEdit = () => {
+  }, [addItemCart, product]);
+
+  const handleEdit = useCallback(() => {
     if (quantity - 1 > 0) {
       editQuantity(product as unknown as ProductModel, quantity - 1);
     } else {
       removeItemCart(product as unknown as ProductModel);
     }
-  };
+  }, [editQuantity, product, quantity, removeItemCart]);
 
   return (
     <div className={styles.productCartCardWrapper} key={id}>

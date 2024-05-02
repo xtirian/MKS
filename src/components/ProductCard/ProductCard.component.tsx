@@ -1,4 +1,4 @@
-import React, { Dispatch } from "react";
+import React, { Dispatch, useCallback } from "react";
 import styles from "./productCard.module.scss";
 import { ProductModel } from "@/models/product";
 import { FiShoppingBag } from "react-icons/fi";
@@ -7,15 +7,15 @@ import Image from "next/image";
 import { useCartContext } from "@/services/useCases/useCartContext";
 import { useSidebarContext } from "@/services/useCases/useSidebarContext";
 
-const ProductCard = (product: ProductModel) => {
+const ProductCard = <T extends ProductModel>(product: Readonly<T>) => {
   const { id, name, brand, description, price, photo } = product;
   const { addItemCart } = useCartContext();
   const { toggleSidebar } = useSidebarContext();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = useCallback(() => {
     addItemCart(product, 1);
     toggleSidebar(true);
-  };
+  }, [product, addItemCart, toggleSidebar]);
 
   return (
     <div className={styles.cardWrap} key={id}>
@@ -26,6 +26,7 @@ const ProductCard = (product: ProductModel) => {
           width={111}
           height={138}
           className={styles.cardImage}
+          key={id}
         />
         <div className={styles.cardInfoWrapper}>
           <h3 className={styles.cardProductName}>
@@ -37,7 +38,11 @@ const ProductCard = (product: ProductModel) => {
         </div>
         <p className={styles.cardDescription}>{description}</p>
       </div>
-      <button className={styles.addCartButton} onClick={handleAddToCart}>
+      <button
+        className={styles.addCartButton}
+        onClick={handleAddToCart}
+        type="button"
+      >
         <FiShoppingBag /> <p>Comprar</p>
       </button>
     </div>

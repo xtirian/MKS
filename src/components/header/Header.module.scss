@@ -45,3 +45,24 @@
 
   @include mix.ButtonM;
 }
+
+@include mix.SM {
+  .headerContainer{
+    @include mix.ContainerSM;
+  }
+}
+@include mix.MD {
+  .headerContainer{
+    @include mix.ContainerMD;
+  }
+}
+@include mix.LG {
+  .headerContainer{
+    @include mix.ContainerLG;
+  }
+}
+@include mix.XL {
+  .headerContainer{
+    @include mix.ContainerXL;
+  }
+}

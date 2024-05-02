@@ -1,0 +1,32 @@
+@use "../../styles/mixin" as mix;
+@use "../../styles/var" as *;
+
+.gridContainer42 {
+  display: grid;
+  @include mix.ContainerXL;
+  grid-template-columns: repeat(1, 1fr);
+  place-items: center;
+  gap: 22px;
+  row-gap: 31px;
+  margin: 30px 0;
+}
+
+@include mix.SM {
+  .gridContainer42 {
+    margin: 48px 0;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include mix.LG {
+  .gridContainer42 {
+    margin: 72px 0;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@include mix.XL {
+  .gridContainer42 {
+    margin: 116px 0;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
